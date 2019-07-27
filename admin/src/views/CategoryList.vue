@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     async fetch() {
-      const res = await this.$axios.get("categories");
+      const res = await this.$axios.get("rest/categories");
       this.items = res.data;
     },
     async handleDelete(row) {
@@ -38,7 +38,7 @@ export default {
         type: "warning"
       })
         .then(async () => {
-          const res = await this.$axios.delete(`categories/${row._id}`);
+          const res = await this.$axios.delete(`rest/categories/${row._id}`);
           this.$router.push("/categories/list");
           this.$message({
             type: "success",
