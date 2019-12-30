@@ -2,14 +2,14 @@
 
 ## 项目运行
 ```
-yarn install 
+npm install 
 
 cd admin 
-yarn serve
+npm run serve
 
 cd serve
-yarn serve
+npm run serve
 
 cd web
-yarn serve
+npm run serve
 ```
