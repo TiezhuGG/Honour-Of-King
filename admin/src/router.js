@@ -55,11 +55,11 @@ const router = new Router({
 })
 
 // 客户端登录路由限制
-// router.beforeEach((to, from, next) => {
-//   if (!to.meta.isPubilc && !localStorage.token) {
-//     return next('/login')
-//   }
-//   next()
-// })
+router.beforeEach((to, from, next) => {
+  if (!to.meta.isPubilc && !localStorage.token) {
+    return next('/login')
+  }
+  next()
+})
 
 export default router
