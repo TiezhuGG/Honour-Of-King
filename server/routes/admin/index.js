@@ -80,11 +80,11 @@ module.exports = app => {
     })
 
     // 登录校验中间件
-    // const authMiddleware = require('../../middleware/auth')
+    const authMiddleware = require('../../middleware/auth')
     const resourceMiddleware = require('../../middleware/resource')
     // 调用以上数据接口的通用接口
-    // app.use('/admin/api/rest/:resource', authMiddleware(), resourceMiddleware(), router)
-    app.use('/admin/api/rest/:resource', resourceMiddleware(), router)
+    app.use('/admin/api/rest/:resource', authMiddleware(), resourceMiddleware(), router)
+    // app.use('/admin/api/rest/:resource', resourceMiddleware(), router)
 
     // 上传文件接口(使用multer中间件处理数据上传)
     const multer = require('multer')
@@ -94,7 +94,7 @@ module.exports = app => {
     //     file.url = `http://localhost:5000/uploads/${file.filename}`
     //     res.send(file)
     // })
-    app.post('/admin/api/upload', upload.single('file'), async (req, res) => {
+    app.post('/admin/api/upload', authMiddleware(), upload.single('file'), async (req, res) => {
         const file = req.file
         // 返回图片地址给前端，让其可以在浏览器中显示出来
         file.url = `http://localhost:5000/uploads/${file.filename}`
